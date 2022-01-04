@@ -3,6 +3,7 @@
     return [
        'header'           => '影片',
        'title'            => '影片資料表',
+       'browse'           => ' 瀏覽 ',
        'user'             => '上傳者',
        'catagory'         => '目錄',
        'id'               => '編號',

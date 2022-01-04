@@ -48,6 +48,9 @@ Route::get('/videos/search', [App\Http\Controllers\VideoController::class, 'sear
 Route::get('/videos/query', [App\Http\Controllers\VideoController::class, 'query'])
           ->name('videos.query');
 
+Route::get('/video/browse', [App\Http\Controllers\VideoController::class, 'browse'])
+          ->name('videos.browse');
+
 Route::resource('videos', VideoController::class);
 
 Route::resource('classifications', ClassificationController::class);

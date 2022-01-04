@@ -38,6 +38,23 @@ class VideoController extends Controller
 
     }
 
+    public function browse()
+    {
+        $pn = 20;
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+
+        $videos = Video::leftJoin('users', 'user_id', 'users.id')
+                       ->leftJoin('vendors', 'vendor_id', 'vendors.id')
+                       ->leftjoin('video_catagories', 'catagory_id', 'video_catagories.id')
+                       ->select('videos.*', 'video_catagories.name as catagory', 'users.name as user', 'vendors.name as vendor')
+                       ->latest()
+                       ->paginate($pn);
+
+        return view('videos.browse', compact('videos'))
+               ->with('i', (request()->input('page', 1) - 1) * $pn);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
